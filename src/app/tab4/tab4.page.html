@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Finanças
+    </ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list *ngIf="listaFilmes">
+    <h2>Finanças Pessoais</h2>
+    <h4>Administrar finanças pessoais é crucial para assegurar estabilidade financeira e bem-estar. Isso envolve criar um orçamento para acompanhar receitas e despesas, estabelecer prioridades e evitar excessos.
+    Poupar regularmente e investir de forma inteligente aumentam a segurança financeira e auxiliam na realização de metas futuras. Gerenciar dívidas responsavelmente e buscar educação financeira contínua são passos essenciais para tomar decisões informadas.
+    Além disso, planejar para o futuro, incluindo aposentadoria e metas de longo prazo, garante uma base sólida para a estabilidade financeira ao longo da vida. Cada pessoa é única, portanto, adaptar esses princípios às circunstâncias individuais é fundamental para alcançar o sucesso financeiro.</h4>
+    
+    <ion-item-sliding *ngFor="let filme of listaFilmes">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
+
+        <ion-thumbnail slot="start">
+          <img *ngIf="filme.cartaz" src="{{filme.cartaz}}" />
+          <ion-icon *ngIf="!filme.cartaz" name="videocam-off"></ion-icon>
+        </ion-thumbnail>
+
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>{{filme.nome}}</h1>
+            <p>{{filme.lancamento}}</p>
+           
+            <ion-icon name="star" [color]="filme.favorito===true ? 'warning' : ('light')"></ion-icon>
+          </div>
+        </ion-label>
+
+    
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="exibirAlertaFavorito(filme)" >
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
